@@ -1,7 +1,3 @@
-var request = new XMLHttpRequest();
-request.open("GET", "https://naira52.github.io/Mon-projet-5/");
-request.send();
-
 // affichage de "des blocks" sur la console
 console.log("liste des produits");
 
