@@ -20,11 +20,11 @@ function Products(_id, image, name, price, description, lien) {
     this.lien = lien;
 }
 
-const teddy_1 = new Products('5be9c8541c9d440000665243', 'http://localhost:3000/images/teddy_1.jpg', 'Norbert', 2900, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'produit.html#Block1');
-const teddy_2 = new Products('5beaa8bf1c9d440000a57d94', 'http://localhost:3000/images/teddy_2.jpg', 'Arnold', 3900, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'produit.html#Block2');
-const teddy_3 = new Products('5beaaa8f1c9d440000a57d95', 'http://localhost:3000/images/teddy_3.jpg', 'Lenny and Carl', 5900, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'produit.html#Block3');
-const teddy_4 = new Products('5beaabe91c9d440000a57d96', 'http://localhost:3000/images/teddy_4.jpg', 'Gustav', 4500, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'produit.html#Block4');
-const teddy_5 = new Products('5beaacd41c9d440000a57d97', 'http://localhost:3000/images/teddy_5.jpg', 'Garfunkel', 5500, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'produit.html#Block5');
+const teddy_1 = new Products('5be9c8541c9d440000665243', 'http://localhost:3000/images/teddy_1.jpg', 'Norbert', 2900, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'https://naira52.github.io/Mon-projet-5/produit.html#Block1');
+const teddy_2 = new Products('5beaa8bf1c9d440000a57d94', 'http://localhost:3000/images/teddy_2.jpg', 'Arnold', 3900, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'https://naira52.github.io/Mon-projet-5/produit.html#Block2');
+const teddy_3 = new Products('5beaaa8f1c9d440000a57d95', 'http://localhost:3000/images/teddy_3.jpg', 'Lenny and Carl', 5900, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'https://naira52.github.io/Mon-projet-5/produit.html#Block3');
+const teddy_4 = new Products('5beaabe91c9d440000a57d96', 'http://localhost:3000/images/teddy_4.jpg', 'Gustav', 4500, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'https://naira52.github.io/Mon-projet-5/produit.html#Block4');
+const teddy_5 = new Products('5beaacd41c9d440000a57d97', 'http://localhost:3000/images/teddy_5.jpg', 'Garfunkel', 5500, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'https://naira52.github.io/Mon-projet-5/produit.html#Block5');
 
 console.log(teddy_1, teddy_2, teddy_3, teddy_4, teddy_5);
 
