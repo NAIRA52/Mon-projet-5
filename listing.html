@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Panier HTML5 + JavaScript</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="panier.js"></script>
+    <script type="text/javascript">
+        function ajouter() {
+            var code = parseInt(document.getElementById("id").value);
+            var qte = parseInt(document.getElementById("qte").value);
+            var prix = parseInt(document.getElementById("prix").value);
+            var monPanier = new Panier();
+            monPanier.ajouterArticle(code, qte, prix);
+            var tableau = document.getElementById("tableau");
+            var longueurTab = parseInt(document.getElementById("nbreLignes").innerHTML);
+            if (longueurTab > 0) {
+                for (var i = longueurTab; i > 0; i--) {
+                    monPanier.ajouterArticle(parseInt(tableau.rows[i].cells[0].innerHTML), parseInt(tableau.rows[i].cells[1].innerHTML), parseInt(tableau.rows[i].cells[2].innerHTML));
+                    tableau.deleteRow(i);
+                }
+            }
+            var longueur = monPanier.liste.length;
+            for (var i = 0; i < longueur; i++) {
+                var ligne = monPanier.liste[i];
+                var ligneTableau = tableau.insertRow(-1);
+                var colonne1 = ligneTableau.insertCell(0);
+                colonne1.innerHTML += ligne.getCode();
+                var colonne2 = ligneTableau.insertCell(1);
+                colonne2.innerHTML += ligne.qteArticle;
+                var colonne3 = ligneTableau.insertCell(2);
+                colonne3.innerHTML += ligne.prixArticle;
+                var colonne4 = ligneTableau.insertCell(3);
+                colonne4.innerHTML += ligne.getPrixLigne();
+                var colonne5 = ligneTableau.insertCell(4);
+                colonne5.innerHTML += "<button class=\"btn btn-primary\" type=\"submit\" onclick=\"supprimer(this.parentNode.parentNode.cells[0].innerHTML)\"><span class=\"glyphicon glyphicon-remove\"></span> Retirer</button>";
+            }
+            document.getElementById("prixTotal").innerHTML = monPanier.getPrixPanier();
+            document.getElementById("nbreLignes").innerHTML = longueur;
+        }
+
+        function supprimer(code) {
+            var monPanier = new Panier();
+            var tableau = document.getElementById("tableau");
+            var longueurTab = parseInt(document.getElementById("nbreLignes").innerHTML);
+            if (longueurTab > 0) {
+                for (var i = longueurTab; i > 0; i--) {
+                    monPanier.ajouterArticle(parseInt(tableau.rows[i].cells[0].innerHTML), parseInt(tableau.rows[i].cells[1].innerHTML), parseInt(tableau.rows[i].cells[2].innerHTML));
+                    tableau.deleteRow(i);
+                }
+            }
+            monPanier.supprimerArticle(code);
+            var longueur = monPanier.liste.length;
+            for (var i = 0; i < longueur; i++) {
+                var ligne = monPanier.liste[i];
+                var ligneTableau = tableau.insertRow(-1);
+                var colonne1 = ligneTableau.insertCell(0);
+                colonne1.innerHTML += ligne.getCode();
+                var colonne2 = ligneTableau.insertCell(1);
+                colonne2.innerHTML += ligne.qteArticle;
+                var colonne3 = ligneTableau.insertCell(2);
+                colonne3.innerHTML += ligne.prixArticle;
+                var colonne4 = ligneTableau.insertCell(3);
+                colonne4.innerHTML += ligne.getPrixLigne();
+                var colonne5 = ligneTableau.insertCell(4);
+                colonne5.innerHTML += "<button class=\"btn btn-primary\" type=\"submit\" onclick=\"supprimer(this.parentNode.parentNode.cells[0].innerHTML)\"><span class=\"glyphicon glyphicon-remove\"></span> Retirer</button>";
+            }
+            document.getElementById("prixTotal").innerHTML = monPanier.getPrixPanier();
+            document.getElementById("nbreLignes").innerHTML = longueur;
+        }
+    </script>
+
+    <section class="container">
+        <article class="well form-inline pull-left col-lg-5">
+            <legend>Gestion du panier</legend>
+            <label class="col-lg-3">Identifiant</label> : <input type="number" id="id" style="width:120px" class="input-sm form-control"></input><br><br>
+            <label class="col-lg-3">Quantité</label> : <input type="number" id="qte" style="width:120px" class="input-sm form-control"></input><br><br>
+            <label class="col-lg-3">Prix</label> : <input type="number" id="prix" style="width:120px" class="input-sm form-control"></input><br><br>
+            <button class="btn btn-primary" type="submit" onclick="ajouter()"><span class="glyphicon glyphicon-shopping-cart"></span> Ajouter au panier</button>
+        </article>
+    </section>
+    <section class="container">
+        <article class="well form-inline pull-left col-lg-5">
+            <legend>Contenu du panier</legend>
+            <table id="tableau" class="table">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Qte</th>
+                        <th>Prix unitaire</th>
+                        <th>Prix de la ligne</th>
+                        <th>Supprimer</th>
+                    </tr>
+                </thead>
+            </table>
+            <br><label>Prix du panier total</label> : <label id="prixTotal"></label>
+            <label id="nbreLignes" hidden>0</label>
+        </article>
+    </section>
+    </body>
+
+</html>
+
+<article class="container text-light m-5 bg-dark" id="b1">
+    <div class="row p-4">
+        <div class="col-md-6 mb-4">
+            <img src="http://localhost:3000/images/teddy_1.jpg" alt="Norbert" style="width: 100%;"></img>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="p-4">
+                <h2>Norbert</h2>
+                <h3 class="lead font-weight-bold">2900€</h3>
+                <h4 class="text-danger font-weight-bold">Description</h4>
+                <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h5>
+                <h6 class="text-success">En stock</h6>
+            </div>
+
+            <form class="d-flex justify-content-around">
+                <input type="number" value="1" min="1" aria-label="Search" class="form-control" style="width: 100px">
+
+                <select class="md-form mdb-select colorful-select dropdown-primary">
+                <option value="" disabled selected>Choisir la couleur</option>
+                <option value="1">Tan</option>
+                <option value="2">Chocolate</option>
+                <option value="3">Black</option>
+                <option value="4">White</option>
+              </select>
+
+                <button class="btn btn-primary btn-md my-0 p" type="submit">Ajouter au panier
+                        <i class="fas fa-shopping-cart ml-1"></i>
+                        <a class="panier.html"></a>
+                 </button>
+
+            </form>
+        </div>
+    </div>
+</article>
+
+<article class="container text-light m-5 bg-dark" id="b2">
+    <div class="row p-4">
+        <div class="col-md-6 mb-4">
+            <img src="http://localhost:3000/images/teddy_2.jpg" alt="Arnold" style="width: 100%;"></img>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="p-4">
+                <h2>Arnold</h2>
+                <h3 class="lead font-weight-bold">3900€</h3>
+                <h4 class="text-danger font-weight-bold">Description</h4>
+                <h5>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h5>
+                <h6 class="text-success">En stock</h6>
+            </div>
+
+            <form class="d-flex justify-content-around">
+                <input type="number" value="1" min="1" aria-label="Search" class="form-control" style="width: 100px">
+
+                <select class="md-form mdb-select colorful-select dropdown-primary">
+                <option value="" disabled selected>Choisir la couleur</option>
+                <option value="1">Pale brown</option>
+                <option value="2">Dark brown</option>
+                <option value="3">White</option>
+              </select>
+
+                <button class="btn btn-primary btn-md my-0 p" type="submit">Ajouter au panier
+                        <i class="fas fa-shopping-cart ml-1"></i>
+                        <a class="panier.html"></a>
+                 </button>
+
+            </form>
+        </div>
+    </div>
+</article>
+
+<article class="container text-light m-5 bg-dark" id="b3">
+    <div class="row p-4">
+        <div class="col-md-6 mb-4">
+            <img src="http://localhost:3000/images/teddy_3.jpg" alt="Lenny" style="width: 100%;"></img>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="p-4">
+                <h2>Lenny and Carl</h2>
+                <h3 class="lead font-weight-bold">5900€</h3>
+                <h4 class="text-danger font-weight-bold">Description</h4>
+                <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h5>
+                <h6 class="text-success">En stock</h6>
+            </div>
+
+            <form class="d-flex justify-content-around">
+                <input type="number" value="1" min="1" aria-label="Search" class="form-control" style="width: 100px">
+
+                <select class="md-form mdb-select colorful-select dropdown-primary">
+                <option value="" disabled selected>Choisir la couleur</option>
+                <option value="1">Brown</option>
+              </select>
+
+                <button class="btn btn-primary btn-md my-0 p" type="submit">Ajouter au panier
+                        <i class="fas fa-shopping-cart ml-1"></i>
+                        <a class="panier.html"></a>
+                 </button>
+
+            </form>
+        </div>
+    </div>
+</article>
+
+<article class="container text-light m-5 bg-dark" id="b4">
+    <div class="row p-4">
+        <div class="col-md-6 mb-4">
+            <img src="http://localhost:3000/images/teddy_4.jpg" alt="" style="width: 100%;"></img>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="p-4">
+                <h2>Gustav</h2>
+                <h3 class="lead font-weight-bold">4500€</h3>
+                <h4 class="text-danger font-weight-bold">Description</h4>
+                <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h5>
+                <h6 class="text-success">En stock</h6>
+            </div>
+
+            <form class="d-flex justify-content-around">
+                <input type="number" value="1" min="1" aria-label="Search" class="form-control" style="width: 100px">
+
+                <select class="md-form mdb-select colorful-select dropdown-primary">
+                <option value="" disabled selected>Choisir la couleur</option>
+                <option value="1">Brown</option>
+                <option value="2">Blue</option>
+                <option value="3">Pink</option>
+              </select>
+
+                <button class="btn btn-primary btn-md my-0 p" type="submit">Ajouter au panier
+                        <i class="fas fa-shopping-cart ml-1"></i>
+                        <a class="panier.html"></a>
+                 </button>
+
+            </form>
+        </div>
+    </div>
+</article>
+
+<article class="container text-light m-5 bg-dark" id="b5">
+    <div class="row p-4">
+        <div class="col-md-6 mb-4">
+            <img src="http://localhost:3000/images/teddy_5.jpg" alt="" style="width: 100%;"></img>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="p-4">
+                <h2>Garfunkel</h2>
+                <h3 class="lead font-weight-bold">5500€</h3>
+                <h4 class="text-danger font-weight-bold">Description</h4>
+                <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h5>
+                <h6 class="text-success">En stock</h6>
+            </div>
+
+            <form class="d-flex justify-content-around">
+                <input type="number" value="1" min="1" aria-label="Search" class="form-control" style="width: 100px">
+
+                <select class="md-form mdb-select colorful-select dropdown-primary">
+                <option value="" disabled selected>Choisir la couleur</option>
+                <option value="1">Beige</option>
+                <option value="2">Tan</option>
+                <option value="3">Chocolate</option>
+              </select>
+
+                <button class="btn btn-primary btn-md my-0 p" type="submit">Ajouter au panier
+                        <i class="fas fa-shopping-cart ml-1"></i>
+                        <a class="panier.html"></a>
+                 </button>
+            </form>
+        </div>
+    </div>
+</article>
+
+
+<button onclick="maFonction()">Bouton</button>
+
+<div id="maDIV" style="display:none;">
+    Contenu de la balise DIV à afficher ou à cacher
+</div>
+
+<script>
+    function maFonction() {
+        var div = document.getElementById("maDIV");
+        if (div.style.display === "none") {
+            div.style.display = "block";
+        } else {
+            div.style.display = "none";
+        }
+    }
+</script>
+var listProductElt = document.getElementById("listProduct"); ajaxGet("http://localhost:3000/api/teddies", function(reponse) { // Transforme la réponse en un tableau d'articles let listProduct = JSON.parse(reponse); listProduct.forEach(function(listProduc)
+{ // Ajout du titre et du contenu de chaque article let titreElt = document.createElement("h3"); titreElt.textContent = listProduc.titre; let contenuElt = document.createElement("p"); contenuElt.textContent = listProduc.contenu; listProductElt.appendChild(titreElt);
+listProductElt.appendChild(contenuElt); }); });
