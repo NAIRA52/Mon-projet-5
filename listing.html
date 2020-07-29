@@ -295,3 +295,10 @@
 var listProductElt = document.getElementById("listProduct"); ajaxGet("http://localhost:3000/api/teddies", function(reponse) { // Transforme la réponse en un tableau d'articles let listProduct = JSON.parse(reponse); listProduct.forEach(function(listProduc)
 { // Ajout du titre et du contenu de chaque article let titreElt = document.createElement("h3"); titreElt.textContent = listProduc.titre; let contenuElt = document.createElement("p"); contenuElt.textContent = listProduc.contenu; listProductElt.appendChild(titreElt);
 listProductElt.appendChild(contenuElt); }); });
+
+
+<li class="cart">
+    <a class="navbar-brand" href="../front/panier.html">
+        <img src="./img/icons-caddie.png" alt="logo caddie"><span>0</span>
+    </a>
+</li>

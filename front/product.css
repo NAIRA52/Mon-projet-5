@@ -1,0 +1,12 @@
+.block {
+    display: flex;
+}
+
+.imageUrl {
+    width: 100%;
+}
+
+#blockSelect {
+    display: flex;
+    justify-content: space-around;
+}

@@ -13,28 +13,16 @@ function printProducts(products) {
     let listOfProducts = "";
 
     products.forEach(prod =>
-        listOfProducts += `
-      
+        listOfProducts += ` 
       <tr class="text-left bg-dark text-light " id="${prod._id}">
         <td class="w-25"><img src=${prod.imageUrl} class="img-fluid img-thumbnail w-75" id="myImg"></td>
         <td class="w-25 align-middle">${prod.name}</td>
         <td class="w-25 align-middle">${prod.price}€</td>
         <td class="w-25 align-middle">${prod.description}</td>
-        <td class="w-25 align-middle"><a id = "view" href="../front/product.html?id=${prod._id}" class = "view-cart btn btn-info">Voir</a></td>
-      </tr>
-     
+        <td class="w-25 align-middle"><a id="view" href="../front/product.html?id=${prod._id}" class="view-cart btn btn-info">Voir</a></td>
+      </tr>   
       `
-    )
+    );
     document.getElementById('productList').innerHTML = listOfProducts;
 
 };
-
-//page produit//
-var request = new XMLHttpRequest();
-request.open("GET", "http://127.0.0.1:5500/front/product.html?id=${prod._id}");
-request.send();
-console.log(window.location)
-    // Prend en paramètres l'URL 
-function ajaxGet(url, rappel) {
-    var req = new XMLHttpRequest();
-}
