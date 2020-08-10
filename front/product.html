@@ -20,22 +20,20 @@
                     <a class="navbar-brand" href="../front/index.html">
                         <img src="./img/logo.png" alt="logo-entreprise" class="w-25">
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                         <span class="navbar-toggler-icon"></span>
-                    </button>
                     <div id="navbarContent" class="collapse navbar-collapse">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item active">
                                 <a class="nav-link" href="../front/index.html">Produit</a>
                             </li>
+                            <li class="cart">
+                                <a href="../front/panier.html">
+                                    <img src="../front/img/icons-caddie.png" alt="logo caddie"><span class="text-dark h3">0</span>
+                                </a>
+                            </li>
                         </ul>
-
-                        <li class="cart">
-                            <a class="navbar-brand" href="../front/panier.html">
-                                <img src="./img/icons-caddie.png" alt="logo caddie"><span>0</span>
-                            </a>
-                        </li>
                     </div>
+
+
                 </nav>
             </div>
         </div>
@@ -43,32 +41,17 @@
 
     <div class="producty m-5 p-1" id="product">
 
-
-
-
-        <div id="blockSelect" class="m-5">
-            <input type="number" value="1" min="1" aria-label="Search" class="form-control" style="width: 100px">
-            <select name="color" id="color">
+        <form action="../front/panier.html" id="blockSelect" class="mt-5">
+            <label for="q">Quantité: </label>
+            <input id="select" type="number" value="1" min="1" aria-label="Search" class="form-control mt-3" style="width: 100px">
+            <select name="color" id="color" class="form-control mt-3">
                 <option value="" selected hidden>Choisissez une couleur</option>
             </select>
 
+            <button id="add-to-cart" type="button" class="add-cart btn-primary form-control mt-3" data-url="../front/panier/">Ajouter au panier</button>
 
-            <button id="buttons" class=" button btn btn-primary btn-md my-0 p">Ajouter au panier</button>
-
-        </div>
-
-
-
-
-
-
+        </form>
     </div>
-
-
-
-
-
-
 
     <!-- Footer -->
     <footer class="bg-danger pb-2">
@@ -93,7 +76,6 @@
             </ul>
         </div>
     </footer>
-    <script src="../front/ajax.js"></script>
     <script src="../front/product.js"></script>
 
 

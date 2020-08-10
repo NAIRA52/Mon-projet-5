@@ -1,39 +1,32 @@
-function LignePanier(code, qte, prix) {
-    this.codeArticle = code;
-    this.qteArticle = qte;
-    this.prixArticle = prix;
-    this.ajouterQte = function(qte) {
-        this.qteArticle += qte;
+let cart = [{
+        id: "vqhqv",
+        name: "norbert",
+        qty: 9,
+    },
+    {
+        id: "jqsjh",
+        name: "lebert",
+        qty: 8,
     }
-    this.getPrixLigne = function() {
-        var resultat = this.prixArticle * this.qteArticle;
-        return resultat;
-    }
-    this.getCode = function() {
-        return this.codeArticle;
-    }
-}
+];
+let cart = JSON.parse(localstorage.getItem("cart"));
 
-function Panier() {
-    this.liste = [];
-    this.ajouterArticle = function(code, qte, prix) {
-        var index = this.getArticle(code);
-        if (index == -1) this.liste.push(new LignePanier(code, qte, prix));
-        else this.liste[index].ajouterQte(qte);
+//ajout d'un objet dans le panier(le produit n'existe pas)
+let newProduct = {
+    id: "isqqsj",
+    name: "paddingteom",
+    qty: 3
+};
+//cart.push(product);
+let exists = false;
+cart.forEach(product => {
+    console.log(product.id);
+    if (product.id === newProduct.id) {
+        exists = true;
+        console.log("produuit exite daeja palnie");
+        product.qty += newProduct.qty;
     }
-    this.getPrixPanier = function() {
-        var total = 0;
-        for (var i = 0; i < this.liste.length; i++)
-            total += this.liste[i].getPrixLigne();
-        return total;
-    }
-    this.getArticle = function(code) {
-        for (var i = 0; i < this.liste.length; i++)
-            if (code == this.liste[i].getCode()) return i;
-        return -1;
-    }
-    this.supprimerArticle = function(code) {
-        var index = this.getArticle(code);
-        if (index > -1) this.liste.splice(index, 1);
-    }
+});
+if (exists === false) {
+    cart.push(newProduct);
 }
