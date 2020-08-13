@@ -17,7 +17,8 @@ function basketCart() {
             // On rajoute le code html sous l'id"table-body"
             tableTitle.innerHTML += `
             <tr class="text-center bg-dark text-light ${item.id}">
-            <td class="w-25"><img src=${item.imageUrl} class="img-fluid img-thumbnail w-75" id="myImg"></td>
+            <td><ion-icon name="close-circle-outline"></ion-icon></td>
+            <td class="w-25"><img src=${item.imageUrl} class="img-fluid img-thumbnail " id="myImg"></td>
             <td class="w-10 align-middle">${item.name}</td>
             <td class="w-10 align-middle">${item.colors}</td>
             <td class="w-10 align-middle">${item.select}</td>
