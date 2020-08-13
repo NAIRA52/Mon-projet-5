@@ -1,32 +1,34 @@
-let cart = [{
-        id: "vqhqv",
-        name: "norbert",
-        qty: 9,
-    },
-    {
-        id: "jqsjh",
-        name: "lebert",
-        qty: 8,
+// Creation d'une fonction pour recuperer les produits du localstorage dans mon panier
+function basketCart() {
+    // Recuperer les donnees dans le localstorage
+    let cartItems = JSON.parse(localStorage.getItem("cart"));
+    console.log(cartItems)
+        // Recuperer les données du prix total
+    let cartTotaly = localStorage.getItem("totalyPrice");
+    console.log(cartTotaly)
+        // Identification l'id html où le tableau va être vu
+    let tableTitle = document.getElementById("table-body");
+    // Identification de l'id html où le prix total va être vu
+    let tableBody = document.getElementById("finally-command");
+    //Creation d'une condition ,on ajoute les donnees du produit et le prix total
+    if (cartItems && cartTotaly) {
+        // On va parcourir le tableau et recuperer les informations et les afficher sur le DOM(page web)
+        cartItems.forEach(item => {
+            // On rajoute le code html sous l'id"table-body"
+            tableTitle.innerHTML += `
+            <tr class="text-center bg-dark text-light ${item.id}">
+            <td class="w-25"><img src=${item.imageUrl} class="img-fluid img-thumbnail w-75" id="myImg"></td>
+            <td class="w-10 align-middle">${item.name}</td>
+            <td class="w-10 align-middle">${item.colors}</td>
+            <td class="w-10 align-middle">${item.select}</td>
+            <td class="w-10 align-middle">${item.qty}</td>
+            <td class="w-10 align-middle">${item.price}€</td>
+            <td class="w-10 align-middle">${item.select*item.qty*item.price},00€</td>
+            </tr>`
+        });
+        //on rajoute le code HTML sous l'id "finally-command"
+        tableBody.innerHTML += `
+            <p class="border border-success">Total de la commande: <span class="Total">${cartTotaly}</span>€</p>`
     }
-];
-let cart = JSON.parse(localstorage.getItem("cart"));
-
-//ajout d'un objet dans le panier(le produit n'existe pas)
-let newProduct = {
-    id: "isqqsj",
-    name: "paddingteom",
-    qty: 3
-};
-//cart.push(product);
-let exists = false;
-cart.forEach(product => {
-    console.log(product.id);
-    if (product.id === newProduct.id) {
-        exists = true;
-        console.log("produuit exite daeja palnie");
-        product.qty += newProduct.qty;
-    }
-});
-if (exists === false) {
-    cart.push(newProduct);
 }
+basketCart()

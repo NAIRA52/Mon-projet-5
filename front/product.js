@@ -59,15 +59,15 @@ function printProduct(product) {
 function addProductEvent(product) {
     // Creation de l'objet "bouton"
     let buttonElt = document.querySelector('#add-to-cart');
-    console.log(buttonElt)
-        // Appel des fonctions au clic du "bouton"
+    // Appel des fonctions au clic du "bouton"
     buttonElt.addEventListener('click', () => {
-        cartNumbers();
+        cartNumbers(product);
         addItem(product);
+        totalCost(product);
     });
 }
 
-// Fonction qui permet de garder le nombre dans l'icone panier au rechargement de la page
+//Fonction qui permet de garder le nombre dans l'icone panier au rechargement de la page
 function onLoadCartNumbers() {
     let productNumbers = localStorage.getItem('cartNumbers');
     if (productNumbers) {
@@ -81,7 +81,6 @@ function cartNumbers() {
     if (productNumbers) {
         localStorage.setItem('cartNumbers', productNumbers + 1);
         document.querySelector('.cart span').textContent = productNumbers + 1;
-
     } else {
         localStorage.setItem('cartNumbers', 1);
         document.querySelector('.cart span').textContent = 1;
@@ -94,22 +93,29 @@ function addItem(product) {
     // Creation d'une variable avec les elements que je souhaite afficher
     let newProduct = {
         id: id,
+        name: product.name,
+        imageUrl: product.imageUrl,
         price: product.price,
         colors: color.value,
         select: select.value,
         qty: 1,
+        //le prix total de chaque produit
+        //total: product.price * select.value * 1,
     };
     // Creation d'une variable pour que mon produit ne soit pas doubler
     let productAlReadyInCart = false;
     // Je boucle tout les produits
     for (let i = 0; i < cart.length; i++) {
-        // Si le produit existe deja , un nouveau produit sera rajouter si son id et sa couleur sont different avec (if)
         if (cart[i].id === newProduct.id && cart[i].colors === newProduct.colors) {
+            //let cartCost = localStorage.getItem("cartCost");
+            //console.log("the price is", product.price * select.value * 1 + );
             console.log("le produit existe deja");
             productAlReadyInCart = true;
             // On ajoute la quantité au produit qui existe deja
             cart[i].qty += newProduct.qty;
             cart[i].select = newProduct.select;
+            cart[i].price = newProduct.price;
+            //cart[i].total = newProduct.total;
         }
     }
     //Si le produit n'existe pas , on rajoute un nouveau au panier
@@ -119,7 +125,22 @@ function addItem(product) {
     }
     //Je stock les nouvelles donnees
     localStorage.setItem("cart", JSON.stringify(cart));
+    //une fenêtre alert apparait lorsqu'on ajoute un produit dans le panier
     alert("Vous avez ajouté ce produit dans votre panier: " + product.name)
     console.log(cart)
 }
-onLoadCartNumbers()
+//Creation d'une fonction pour la somme finale
+function totalCost(product) {
+    // Creation de la variable dans le localstorage
+    let cartCost = localStorage.getItem("totalyPrice");
+    //Je stock la somme final en calculant le prix multiplier avec le selecteur nombre multiplier avec la quantité de chaque produit
+    if (cartCost != null) {
+        // je transforme la variable en nombre(number)
+        cartCost = parseInt(cartCost);
+        //Stockage la somme final en calculant le prix multiplier avec le selecteur nombre multiplier avec la quantité de chaque produit
+        localStorage.setItem("totalyPrice", cartCost + product.price * select.value * 1);
+    } else {
+        // Stockage la somme final des produits selectionne
+        localStorage.setItem("totalyPrice", product.price);
+    }
+}

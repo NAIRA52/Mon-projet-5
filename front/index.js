@@ -11,7 +11,6 @@ fetch("http://localhost:3000/api/teddies")
 
 function printProducts(products) {
     let listOfProducts = "";
-
     products.forEach(prod =>
         listOfProducts += ` 
       <tr class="text-left bg-dark text-light " id="${prod._id}">
