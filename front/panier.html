@@ -36,30 +36,61 @@
             </div>
         </div>
     </header>
-    <!--structure de la commande-->
-    <div class="container bg-white p-5 mt-5">
-        <table class="table-title table  text-center bg-success text-light">
-            <thead>
-                <tr>
-                    <th>
-                        <ion-icon name="trash-outline"></ion-icon>
-                    </th>
-                    <th>Article</th>
-                    <th>Name</th>
-                    <th>Couleur</th>
-                    <th>Nombre</th>
-                    <th>Quantité</th>
-                    <th>Prix</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
+    <!--La commande-->
+    <div class="container bg-light m-5 p-5">
+        <h2 class="text-center m-5">Votre commande</h2>
+        <table class="table-title table  text-center bg-success text-light p-5">
+            <tr>
+                <th>Article</th>
+                <th>Name</th>
+                <th>Couleur</th>
+                <th>Nombre</th>
+                <th>Quantité</th>
+                <th>Prix</th>
+                <th>Total</th>
+            </tr>
+
             <tbody id="table-body"></tbody>
         </table>
+        <div id="finally-command" class="d-flex align-items-end flex-column-reverse">
 
-        <div id="finally-command" class="d-flex align-items-end flex-column-reverse" ">
-
-            <button id="confirm-command " class="btn-primary ">Passer la commande</button>
         </div>
+    </div>
+    <!--Le formulaire-->
+    <div class="container bg-light m-5 p-2">
+        <h2 class="text-center m-5">Vos coordonnés</h2>
+        <form id="myForm" class="text-center">
+            <label class="form_col" for="lastName">Nom :</label>
+            <input name="lastName" id="lastName" type="text" placeholder="Votre nom" required/>
+            <span class="tooltip">Un nom ne peut pas faire moins de 2 caractères</span>
+            </br>
+            <label class="form_col" for="firstName">Prénom :</label>
+            <input name="firstName" id="firstName" type="text" placeholder="Votre prénom" required/>
+            <span class="tooltip">Un prénom ne peut pas faire moins de 2 caractères</span>
+            </br>
+            <label class="form_col" for=adresse>Adresse :</label>
+            <input name=adresse id="adresse" placeholder="Votre adresse postale" required></input>
+            <span class="tooltip">L'adresse ne peut pas faire moins de 2 caractéres</span>
+            </br>
+            <label class="form_col" for="codepostal">Code postal :</label>
+            <input name="codepostal" id="codepostal" type="text" placeholder="Votre code postal" required>
+            <span class="tooltip">Le code postal doit contenir 5 chiffres</span>
+            </br>
+            <label class="form_col" for="ville">Ville :</label>
+            <input name="ville" type="text" id="ville" placeholder="Votre ville" required>
+            <span class="tooltip">La ville ne peut pas faire moins de 2 caractéres</span>
+            </br>
+            <label class="form_col" for="emailAddress">Email</label>
+            <input type="email" name="email" id="email" placeholder="Votre email" required>
+            <span class="tooltip">Le mail doit contenir un @</span>
+            <br>
+            <input class="btn-success m-2" type="submit" value="Passer la commande"><br>
+        </form>
+        <div class="text-right">
+
+            <button id="vider-commande " class="btn-primary d-flex" type="reset"> Vider le panier </button>
+        </div>
+
     </div>
     <!-- Footer -->
     <footer class="bg-danger pb-2 ">
@@ -85,7 +116,6 @@
         </div>
     </footer>
     <script src="../front/panier.js "></script>
-    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js "></script>
 
 </body>
 

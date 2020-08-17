@@ -106,9 +106,8 @@ function addItem(product) {
     let productAlReadyInCart = false;
     // Je boucle tout les produits
     for (let i = 0; i < cart.length; i++) {
+        //Si l'id = "newPoduct.id" et colors = newProduct.colors ,un nouveau produit se crée si l'id et la couleur changent
         if (cart[i].id === newProduct.id && cart[i].colors === newProduct.colors) {
-            //let cartCost = localStorage.getItem("cartCost");
-            //console.log("the price is", product.price * select.value * 1 + );
             console.log("le produit existe deja");
             productAlReadyInCart = true;
             // On ajoute la quantité au produit qui existe deja
@@ -133,9 +132,9 @@ function addItem(product) {
 function totalCost(product) {
     // Creation de la variable dans le localstorage
     let cartCost = localStorage.getItem("totalyPrice");
-    //Je stock la somme final en calculant le prix multiplier avec le selecteur nombre multiplier avec la quantité de chaque produit
     if (cartCost != null) {
-        // je transforme la variable en nombre(number)
+        console.log(cartCost)
+            // je transforme la variable en nombre(number)
         cartCost = parseInt(cartCost);
         //Stockage la somme final en calculant le prix multiplier avec le selecteur nombre multiplier avec la quantité de chaque produit
         localStorage.setItem("totalyPrice", cartCost + product.price * select.value * 1);

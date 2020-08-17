@@ -17,7 +17,6 @@ function basketCart() {
             // On rajoute le code html sous l'id"table-body"
             tableTitle.innerHTML += `
             <tr class="text-center bg-dark text-light ${item.id}">
-            <td><ion-icon name="close-circle-outline"></ion-icon></td>
             <td class="w-25"><img src=${item.imageUrl} class="img-fluid img-thumbnail " id="myImg"></td>
             <td class="w-10 align-middle">${item.name}</td>
             <td class="w-10 align-middle">${item.colors}</td>
@@ -29,7 +28,14 @@ function basketCart() {
         });
         //on rajoute le code HTML sous l'id "finally-command"
         tableBody.innerHTML += `
-            <p class="border border-success">Total de la commande: <span class="Total">${cartTotaly}</span>€</p>`
+            <p class="bg-success text-white p-2">Total de la commande: <span class="Total">${cartTotaly}</span>€</p>`
     }
 }
+//Creation de l'evenement qui sera déclencher à l'appuie du bouton
+let form = document.querySelector("myForm");
+myForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("Commande envoyée!");
+});
+
 basketCart()

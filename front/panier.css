@@ -1,5 +1,29 @@
+/*la commande*/
+
 .table-title ion-icon {
     color: blue;
     cursor: pointer;
     font-size: 30px;
+}
+
+
+/* le formulaire*/
+
+.form_col {
+    margin-right: 30px;
+    padding: 3px 0px;
+    width: 200px;
+    text-align: right;
+}
+
+input {
+    padding: 2px;
+    border: 1px solid #CCC;
+    border-radius: 2px;
+    width: 20rem;
+}
+
+input:focus {
+    border-color: rgba(82, 168, 236, 0.75);
+    box-shadow: 0 0 8px rgba(82, 168, 236, 0.5);
 }
