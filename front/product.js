@@ -1,9 +1,9 @@
 // Renvoi les informations de l'URL
 let url = window.location.href;
-console.log(url);
+//console.log(url);
 // Creation de la nouvelle URL
 let parsedUrl = new URL(window.location.href);
-console.log(parsedUrl.searchParams.get("id"));
+//console.log(parsedUrl.searchParams.get("id"));
 // Analyser les parametres de l' id
 let id = parsedUrl.searchParams.get("id");
 //recuperation des informations de l'api
@@ -35,7 +35,7 @@ function printProduct(product) {
     blockRightElt.setAttribute('class', 'blockRight p-5');
     blockRightElt.setAttribute('id', 'blockRights');
     nameElt.textContent = product.name;
-    priceElt.textContent = product.price;
+    priceElt.textContent = product.price / 100;
     euroElt.textContent = ('€');
     descriptionElt.textContent = product.description;
     /*Option couleur*/
@@ -66,14 +66,6 @@ function addProductEvent(product) {
         totalCost(product);
     });
 }
-
-//Fonction qui permet de garder le nombre dans l'icone panier au rechargement de la page
-function onLoadCartNumbers() {
-    let productNumbers = localStorage.getItem('cartNumbers');
-    if (productNumbers) {
-        document.querySelector('.cart span').textContent = productNumbers;
-    }
-}
 //rajouter dans l'icone panier
 function cartNumbers() {
     let productNumbers = localStorage.getItem('cartNumbers');
@@ -95,12 +87,10 @@ function addItem(product) {
         id: id,
         name: product.name,
         imageUrl: product.imageUrl,
-        price: product.price,
+        price: product.price / 100,
         colors: color.value,
         select: select.value,
         qty: 1,
-        //le prix total de chaque produit
-        //total: product.price * select.value * 1,
     };
     // Creation d'une variable pour que mon produit ne soit pas doubler
     let productAlReadyInCart = false;
@@ -112,9 +102,7 @@ function addItem(product) {
             productAlReadyInCart = true;
             // On ajoute la quantité au produit qui existe deja
             cart[i].qty += newProduct.qty;
-            cart[i].select = newProduct.select;
             cart[i].price = newProduct.price;
-            //cart[i].total = newProduct.total;
         }
     }
     //Si le produit n'existe pas , on rajoute un nouveau au panier
@@ -126,20 +114,20 @@ function addItem(product) {
     localStorage.setItem("cart", JSON.stringify(cart));
     //une fenêtre alert apparait lorsqu'on ajoute un produit dans le panier
     alert("Vous avez ajouté ce produit dans votre panier: " + product.name)
-    console.log(cart)
+        //console.log(cart)
 }
 //Creation d'une fonction pour la somme finale
 function totalCost(product) {
     // Creation de la variable dans le localstorage
-    let cartCost = localStorage.getItem("totalyPrice");
+    let cartCost = localStorage.getItem("totalPrice");
     if (cartCost != null) {
-        console.log(cartCost)
-            // je transforme la variable en nombre(number)
+        //console.log(cartCost)
+        // je transforme la variable en nombre(number)
         cartCost = parseInt(cartCost);
         //Stockage la somme final en calculant le prix multiplier avec le selecteur nombre multiplier avec la quantité de chaque produit
-        localStorage.setItem("totalyPrice", cartCost + product.price * select.value * 1);
+        localStorage.setItem("totalPrice", cartCost + product.price / 100 * select.value * 1);
     } else {
         // Stockage la somme final des produits selectionne
-        localStorage.setItem("totalyPrice", product.price);
+        localStorage.setItem("totalPrice", product.price / 100 * select.value * 1);
     }
 }
