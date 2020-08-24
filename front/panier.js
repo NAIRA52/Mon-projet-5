@@ -17,9 +17,10 @@ if (cartItems && cartTotal) {
             <tr class="text-center bg-dark text-light ${item.id}">
             <td class="w-25"><img src=${item.imageUrl} class="img-fluid img-thumbnail " id="myImg"></td>
             <td class = "w-10 align-middle">${item.name}</td>
-            <td class = "w-10 align-middle">${item.select}</td>
+            <td class = "w-10 align-middle">${item.color}</td>
+            <td class = "w-10 align-middle">${item.qty}</td>
             <td class="w-10 align-middle">${item.price}€</td>
-            <td class="w-10 align-middle">${item.qty*item.select*item.price},00€</td>
+            <td class="w-10 align-middle">${item.qty*item.price},00€</td>
         </tr>`
     });
     //on rajoute le code HTML sous l'id "finally-command"
@@ -67,8 +68,10 @@ myForm.addEventListener("submit", function(e) {
             localStorage.setItem("result", JSON.stringify(orderRecap))
                 // on creer une fenêtre demandant la validation de la commande et menant à une page de confirmation indiquant l'orderId et le prix total
             let val = confirm("Souhaitez-vous confirmer votre commande?");
+            // On utilise une condition si celle-ci est validée ,les données du produit sont afficher sinon celle-ci est annulée
             if (val == true) {
-                document.write("<center><div><h2>Votre commande numéro : <br>" + recupOrderId + "<br>" + "d'un total de:<br> " + cartTotal + "euros a été reçue!</h2><B>Merci de votre visite!</B></center>");
+                // Avec document-write ,celui-ci va écrire directement dans le DOM le résultat
+                document.write("<center><h2>Votre commande numéro : <br>" + recupOrderId + "<br>" + "d'un total de:<br> " + cartTotal + "euros a été reçue!</h2><B>Merci de votre visite!</B></center>");
             } else {
                 document.write("Votre commande est annulée!");
             }

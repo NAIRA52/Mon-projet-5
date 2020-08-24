@@ -10,3 +10,42 @@
     display: flex;
     flex-direction: column;
 }
+
+@media (min-width: 538px) and (max-width: 768px) {
+    #myImg {
+        margin-top: 5rem;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 538px) {
+    .imglogo {
+        width: 50%;
+    }
+    header {
+        width: 160%;
+    }
+    footer {
+        width: 160%;
+    }
+    .container {
+        padding: 0;
+        margin: 0;
+    }
+    tr {
+        display: flex;
+        flex-direction: column;
+        width: 150%;
+        padding: 0;
+        margin: 2rem;
+    }
+    .table td {
+        width: 100%!important;
+    }
+    .producty {
+        width: 150%;
+    }
+    .block {
+        display: flex;
+        flex-direction: column;
+    }
+}

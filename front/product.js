@@ -31,7 +31,7 @@ function printProduct(product) {
     blockElt.setAttribute('class', 'block m-5 bg-dark text-light');
     blockLeftElt.setAttribute('class', 'blockLeft p-5 col-md-6 mb-4');
     imageUrlElt.src = product.imageUrl;
-    imageUrlElt.setAttribute('class', 'imageUrl style=100%');
+    imageUrlElt.setAttribute('class', 'imageUrl');
     blockRightElt.setAttribute('class', 'blockRight p-5');
     blockRightElt.setAttribute('id', 'blockRights');
     nameElt.textContent = product.name;
@@ -61,7 +61,7 @@ function addProductEvent(product) {
     let buttonElt = document.querySelector('#add-to-cart');
     // Appel des fonctions au clic du "bouton"
     buttonElt.addEventListener('click', () => {
-        cartNumbers(product);
+        cartNumbers();
         addItem(product);
         totalCost(product);
     });
@@ -71,11 +71,12 @@ function cartNumbers() {
     let productNumbers = localStorage.getItem('cartNumbers');
     productNumbers = parseInt(productNumbers);
     if (productNumbers) {
-        localStorage.setItem('cartNumbers', productNumbers + 1);
-        document.querySelector('.cart span').textContent = productNumbers + 1;
+
+        localStorage.setItem('cartNumbers', productNumbers + parseInt(select.value));
+        document.querySelector('.cart span').textContent = productNumbers + parseInt(select.value);
     } else {
-        localStorage.setItem('cartNumbers', 1);
-        document.querySelector('.cart span').textContent = 1;
+        localStorage.setItem('cartNumbers', parseInt(select.value));
+        document.querySelector('.cart span').textContent = parseInt(select.value);
     }
 }
 // Creation d'une fonction pour les produits dans le localstorage
@@ -88,16 +89,19 @@ function addItem(product) {
         name: product.name,
         imageUrl: product.imageUrl,
         price: product.price / 100,
-        colors: color.value,
-        select: select.value,
-        qty: 1,
+        color: color.value,
+        qty: parseInt(select.value)
     };
+    console.log(newProduct);
+    console.log(select);
+    console.log(color);
+
     // Creation d'une variable pour que mon produit ne soit pas doubler
     let productAlReadyInCart = false;
     // Je boucle tout les produits
     for (let i = 0; i < cart.length; i++) {
-        //Si l'id = "newPoduct.id" et colors = newProduct.colors ,un nouveau produit se crée si l'id et la couleur changent
-        if (cart[i].id === newProduct.id && cart[i].colors === newProduct.colors) {
+        //Si l'id = "newPoduct.id" et color = newProduct.color,un nouveau produit se crée si l'id et la couleur changent
+        if (cart[i].id === newProduct.id && cart[i].color === newProduct.color) {
             console.log("le produit existe deja");
             productAlReadyInCart = true;
             // On ajoute la quantité au produit qui existe deja
@@ -125,9 +129,9 @@ function totalCost(product) {
         // je transforme la variable en nombre(number)
         cartCost = parseInt(cartCost);
         //Stockage la somme final en calculant le prix multiplier avec le selecteur nombre multiplier avec la quantité de chaque produit
-        localStorage.setItem("totalPrice", cartCost + product.price / 100 * select.value * 1);
+        localStorage.setItem("totalPrice", cartCost + product.price * select.value / 100);
     } else {
         // Stockage la somme final des produits selectionne
-        localStorage.setItem("totalPrice", product.price / 100 * select.value * 1);
+        localStorage.setItem("totalPrice", product.price * select.value / 100);
     }
 }
