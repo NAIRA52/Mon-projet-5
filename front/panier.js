@@ -61,7 +61,6 @@ myForm.addEventListener("submit", function(e) {
             // On supprime les anciennes données dans le localstorage
             localStorage.clear();
             // On déclare une nouvelle variable en insérant l'orderId et le prix total
-
             let orderRecap = { recupOrderId, cartTotal };
             // console.log(orderRecap)
             // On stock les données de l'orderId et du prix total dans le localstorage
@@ -71,7 +70,7 @@ myForm.addEventListener("submit", function(e) {
             // On utilise une condition si celle-ci est validée ,les données du produit sont afficher sinon celle-ci est annulée
             if (val == true) {
                 // Avec document-write ,celui-ci va écrire directement dans le DOM le résultat
-                document.write("<center><h2>Votre commande numéro : <br>" + recupOrderId + "<br>" + "d'un total de:<br> " + cartTotal + "euros a été reçue!</h2><B>Merci de votre visite!</B></center>");
+                document.write("<center><h2>Votre commande numéro : <br>" + "<p>" + recupOrderId.fontcolor("red") + "</p>" + "d'un total de:<br> " + "<p>" + cartTotal.fontcolor("red") + "</p>" + " euros a été reçue!</h2><B>Merci de votre visite!</B></center>");
             } else {
                 document.write("Votre commande est annulée!");
             }
