@@ -1,0 +1,85 @@
+.block {
+    display: flex;
+}
+
+.imageUrl {
+    width: 100%;
+}
+
+#blockSelect {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* le formulaire*/
+
+.form_col {
+    margin-right: 30px;
+    padding: 3px 0px;
+    width: 200px;
+    text-align: right;
+}
+
+input {
+    padding: 2px;
+    border: 1px solid #CCC;
+    border-radius: 2px;
+    width: 20rem;
+}
+
+@media (min-width: 538px) and (max-width: 768px) {
+    #myImg {
+        margin-top: 5rem;
+    }
+    .imglogo {
+        width: 50%;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 538px) {
+    .imglogo {
+        width: 50%;
+    }
+    header {
+        width: 165%;
+    }
+    footer {
+        width: 165%;
+    }
+    tr {
+        display: flex;
+        flex-direction: column;
+        width: 150%;
+        padding: 0;
+        margin: 2rem;
+    }
+    .table td {
+        width: 100%!important;
+    }
+    .producty {
+        width: 150%;
+    }
+    .block {
+        display: flex;
+        flex-direction: column;
+    }
+    .containere {
+        padding: 0;
+        margin: 0;
+        width: 150%;
+    }
+    table,
+    tbody,
+    tr,
+    td {
+        display: block;
+        width: auto!important;
+    }
+    th {
+        display: none;
+    }
+    label {
+        text-align: left!important;
+    }
+}

@@ -4,40 +4,38 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../front/panier.css" />
+    <link rel="stylesheet" href="../front/style.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     </link>
     <title>Orinoco</title>
 </head>
 
-<body class="sm">
+<body>
     <!--header-->
-    <header class="bg-danger w-100">
+    <header class="bg-danger ">
         <div class="container">
             <div class="row">
-                <nav class="col navbar navbar-expand-lg navbar-dark">
+                <div class="logo d-flex align-items-center  ">
                     <a class="navbar-brand" href="../front/index.html">
-                        <img src="./img/logo.png" alt="logo-entreprise" class="w-25">
+                        <img src="../front/img/logo.png" alt="logo-entreprise" class=" imglogo w-25">
                     </a>
-                    <div id="navbarContent" class="collapse navbar-collapse">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="../front/index.html">Produit</a>
-                            </li>
-                            <li class="cart" id="cart">
-                                <a href="../front/panier.html">
-                                    <img src="../front/img/icons-caddie.png" alt="logo caddie"><span class="text-dark h3">0</span>
-                                </a>
-                            </li>
-                        </ul>
+
+                    <div class="pr-5">
+                        <a class="text-dark h3 text-decoration-none " href="../front/index.html">Accueil</a>
                     </div>
-                </nav>
+                    <div class="cart">
+                        <a href="../front/panier.html">
+                            <img src="../front/img/icons-caddie.png" alt="logo caddie"><span class="text-dark h3">0</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
+
     </header>
     <!--La commande-->
-    <div class="container bg-light m-5 p-5">
+    <div class="containere bg-light m-5 p-5">
         <h2 class="text-center m-5">Votre commande</h2>
         <table class="table-title table  text-center bg-success text-light p-5">
             <tr>
@@ -57,7 +55,7 @@
         </div>
     </div>
     <!--Le formulaire-->
-    <div class="container bg-light m-5 p-2">
+    <div class="containere bg-light m-5 p-2">
         <h2 class="text-center m-5">Vos coordonnés</h2>
         <form id="myForm" class="text-center">
             <label class="form_col" for="lastName">Nom :</label>
