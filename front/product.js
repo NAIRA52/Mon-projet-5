@@ -84,7 +84,7 @@ function cartNumbers() {
         //On identifie l'élément où celui-ci va être affiché
         document.querySelector('.cart span').textContent = productNumbers + parseInt(select.value);
     } else {
-        // On additionne le nombre de quantité ajoutée
+        // On stock la valeur en additionnant le nombre de quantité ajoutée
         localStorage.setItem('cartNumbers', parseInt(select.value));
         // on identifie l'élément où celui-ci va être affiché
         document.querySelector('.cart span').textContent = parseInt(select.value);
