@@ -18,10 +18,12 @@ function printProduct(product) {
     let productElt = document.getElementById("product");
     let colorSelectElt = document.getElementById("color");
     let blockSelect = document.getElementById("blockSelect");
-    // Ajout des descriptions dans la page web
+    // Création des éléments dans la page web
     let blockElt = document.createElement('div');
+    // La partie gauche du block
     let blockLeftElt = document.createElement('div');
     let imageUrlElt = document.createElement("img");
+    // La partie droite du block
     let blockRightElt = document.createElement('div');
     let nameElt = document.createElement("h2");
     let priceElt = document.createElement("p");
@@ -30,10 +32,11 @@ function printProduct(product) {
     //Attribution des elements 
     blockElt.setAttribute('class', 'block m-5 bg-dark text-light');
     blockLeftElt.setAttribute('class', 'blockLeft p-5 col-md-6 mb-4');
-    imageUrlElt.src = product.imageUrl;
     imageUrlElt.setAttribute('class', 'imageUrl');
     blockRightElt.setAttribute('class', 'blockRight p-5');
     blockRightElt.setAttribute('id', 'blockRights');
+    // Afiichage des éléments de l'API dans les balises HTML
+    imageUrlElt.src = product.imageUrl;
     nameElt.textContent = product.name;
     priceElt.textContent = product.price / 100;
     euroElt.textContent = ('€');
@@ -44,16 +47,20 @@ function printProduct(product) {
         colorElt.innerHTML = color;
         colorSelectElt.appendChild(colorElt);
     });
-    /*Element suivi d'un autre*/
+    //Constuction du block product
     productElt.appendChild(blockElt);
     blockElt.appendChild(blockLeftElt);
-    blockLeftElt.appendChild(imageUrlElt);
     blockElt.appendChild(blockRightElt);
+    // le block gauche
+    blockLeftElt.appendChild(imageUrlElt);
+    // le block droit
     blockRightElt.appendChild(nameElt);
     blockRightElt.appendChild(priceElt);
-    priceElt.appendChild(euroElt);
     blockRightElt.appendChild(descriptionElt);
-    blockRights.append(blockSelect);
+    // introduction du logo € derriére le prix
+    priceElt.appendChild(euroElt);
+    // introduction du block select dans le block droit
+    blockRightElt.append(blockSelect);
 }
 // Creation d'une fonction qui permet le fonctionnement du "bouton"
 function addProductEvent(product) {
@@ -69,13 +76,17 @@ function addProductEvent(product) {
 //rajouter dans l'icone panier
 function cartNumbers() {
     let productNumbers = localStorage.getItem('cartNumbers');
+    // On convertit le string en nombre
     productNumbers = parseInt(productNumbers);
     if (productNumbers) {
-
+        //On stock la valeur dans le localStorage
         localStorage.setItem('cartNumbers', productNumbers + parseInt(select.value));
+        //On identifie l'élément où celui-ci va être affiché
         document.querySelector('.cart span').textContent = productNumbers + parseInt(select.value);
     } else {
+        // On additionne le nombre de quantité ajoutée
         localStorage.setItem('cartNumbers', parseInt(select.value));
+        // on identifie l'élément où celui-ci va être affiché
         document.querySelector('.cart span').textContent = parseInt(select.value);
     }
 }
