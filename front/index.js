@@ -2,6 +2,7 @@
 fetch("http://localhost:3000/api/teddies")
     .then(response => response.json())
     .then(teddies => {
+        console.log(teddies)
         printProducts(teddies);
     });
 //Création d'une fonction pour la structure du DOM

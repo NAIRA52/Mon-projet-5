@@ -68,13 +68,15 @@
             <label class="form_col" for=adress>Adresse :</label>
             <input name=adress id="adress" placeholder="Votre adresse postale" required></input>
             </br>
+            <!-- Pattern: La ville ne comporte que des lettres-->
             <label class="form_col" for="city">Ville :</label>
             <input name="city" type="text" id="city" placeholder="Votre ville" required pattern="[A-Za-z]+">
             </br>
-            <label class="form_col" for="emailAddress">Email</label>
             <!--Pattern = le mail doit contenir un @ et un point-->
+            <label class="form_col" for="emailAddress">Email</label>
             <input type="email" name="email" id="email" placeholder="utilisateur@domaine.fr" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}">
             <br>
+            <!--L'envoi du formulaire -->
             <input class="exped btn-success m-2" type="submit" value="Passer la commande">
         </form>
     </div>

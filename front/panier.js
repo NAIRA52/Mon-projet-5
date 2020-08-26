@@ -72,7 +72,7 @@ myForm.addEventListener("submit", function(e) {
                 // Avec document-write ,celui-ci va écrire directement dans le DOM le résultat
                 document.write("<center><h2>Votre commande numéro : <br>" + "<p>" + recupOrderId.fontcolor("red") + "</p>" + "d'un total de:<br> " + "<p>" + cartTotal.fontcolor("red") + "</p>" + " euros a été reçue!</h2><B>Merci de votre visite!</B></center>");
             } else {
-                document.write("Votre commande est annulée!");
+                document.write("<center><h3>Votre commande est annulée!</h3><center>");
             }
         })
 });

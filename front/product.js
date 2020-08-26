@@ -10,6 +10,7 @@ let id = parsedUrl.searchParams.get("id");
 fetch("http://localhost:3000/api/teddies/" + id)
     .then(response => response.json())
     .then(teddy => {
+        console.log(teddy)
         printProduct(teddy);
         addProductEvent(teddy);
     });
@@ -41,7 +42,7 @@ function printProduct(product) {
     priceElt.textContent = product.price / 100;
     euroElt.textContent = ('€');
     descriptionElt.textContent = product.description;
-    /*Option couleur*/
+    //On insére le tableau de couleur à l'intérieur du select color
     product.colors.forEach(color => {
         let colorElt = document.createElement('option');
         colorElt.innerHTML = color;
@@ -104,8 +105,8 @@ function addItem(product) {
         qty: parseInt(select.value)
     };
     console.log(newProduct);
-    console.log(select);
-    console.log(color);
+    //console.log(select);
+    //console.log(color);
 
     // Creation d'une variable pour que mon produit ne soit pas doubler
     let productAlReadyInCart = false;
