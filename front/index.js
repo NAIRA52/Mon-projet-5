@@ -22,5 +22,4 @@ function printProducts(products) {
     );
     //On identifie l'id pour l'affichage du tableau
     document.getElementById('productList').innerHTML = listOfProducts;
-
 };

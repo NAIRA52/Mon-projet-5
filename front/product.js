@@ -74,7 +74,14 @@ function addProductEvent(product) {
         totalCost(product);
     });
 }
-//rajouter dans l'icone panier
+// Permettre de garder le nombre visible dans le panier au rechargement de la page
+function loadCartNumbers() {
+    let productNumbers = localStorage.getItem("cartNumbers");
+    if (productNumbers) {
+        document.querySelector('.cart span').textContent = productNumbers;
+    }
+}
+//Rajouter dans l'icone panier le nombre de produit
 function cartNumbers() {
     let productNumbers = localStorage.getItem('cartNumbers');
     // On convertit le string en nombre
@@ -89,6 +96,7 @@ function cartNumbers() {
         localStorage.setItem('cartNumbers', parseInt(select.value));
         // on identifie l'élément où celui-ci va être affiché
         document.querySelector('.cart span').textContent = parseInt(select.value);
+
     }
 }
 // Creation d'une fonction pour les produits dans le localstorage
@@ -147,3 +155,4 @@ function totalCost(product) {
         localStorage.setItem("totalPrice", product.price * select.value / 100);
     }
 }
+loadCartNumbers()
